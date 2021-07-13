@@ -23,4 +23,7 @@ Resources:
           Properties:
             Path: /hello
             Method: get
+      Environment:
+        Variables:
+          REGION: us-east-1
 
