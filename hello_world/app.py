@@ -36,7 +36,7 @@ def lambda_handler(event, context):
     return {
         "statusCode": 200,
         "body": json.dumps({
-            "message": "HI FROM AWS-SAM-DEPLOYMENT",
+            "message": "HI FROM AWS-SAM-DEPLOYMENT/ Checking 'change set' is executing",
             # "location": ip.text.replace("\n", "")
         }),
     }
