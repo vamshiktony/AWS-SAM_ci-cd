@@ -36,7 +36,7 @@ def lambda_handler(event, context):
     return {
         "statusCode": 200,
         "body": json.dumps({
-            "message": "HI FROM AWS-SAM-DEPLOYMENT Using CI/CD [ AWS-Code-Pipeline ]",
+            "message": "HI FROM AWS-SAM-DEPLOYMENT",
             # "location": ip.text.replace("\n", "")
         }),
     }
