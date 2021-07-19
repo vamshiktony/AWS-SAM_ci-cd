@@ -5,7 +5,7 @@ phases:
     on-failure: ABORT
     commands:
       - echo "Starting SAM packaging `date` in `pwd`"
-      - aws cloudformation package --template-file template.yaml --s3-bucket aws-sam-cli-managed-default-samclisourcebucket-1gw6e6h1ubr3i --output-template-file packaged.yaml
+      - aws cloudformation package --template-file template.yaml --s3-bucket $BUILD_OUTPUT_BUCKET --output-template-file packaged.yaml
   post_build:
     commands:
       - echo "SAM packaging completed on `date`"
