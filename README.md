@@ -17,9 +17,9 @@ aws cloudformation create-stack --stack-name myteststack --template-body file://
 
 And two cloudformation stacks will be created as below:
 
-First Creates Complete Codepipeline {CI/CD}.
+> First Creates Complete Codepipeline {CI/CD}.
 
 
-Second creates the serverless lambda function using SAM-template placed in the root directory and API gateway to invoke that lambda.
+> Second creates the serverless lambda function using SAM-template placed in the root directory and API gateway to invoke that lambda.
 
 ![lambdastack](https://user-images.githubusercontent.com/51155045/126157041-c56e4fd4-1d95-414d-9875-8b86a95d0fdb.PNG)
