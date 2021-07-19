@@ -14,9 +14,13 @@ Parameters:
     Type: String
     Default: vamshiktony
   BuildProjectName:
-    Description: Code build Project name .
+    Description: Code build Project name
     Type: String
     Default: SAM-project
+  SAMCFStackName:
+    Description: Stack name for the lambda and API-gateway CF-stack.
+    Type: String
+    Default: SAM-Lambda-Stack
 Resources:
   BuildArtifactsBucket:
     Type: 'AWS::S3::Bucket'
@@ -55,7 +59,7 @@ Resources:
         Location: !Ref BuildArtifactsBucket
         Type: S3
       Name: sam-Codepipeline
-      RoleArn: !GetAtt CloudFormationExecutionRole.Arn
+      RoleArn: !GetAtt CodePipelineExecutionRole.Arn
       Stages:
         - Name: Source
           Actions:
@@ -98,7 +102,7 @@ Resources:
               Configuration:
                 ActionMode: CHANGE_SET_REPLACE
                 RoleArn: !GetAtt CloudFormationExecutionRole.Arn
-                StackName: aws-sam-stack
+                StackName: !Ref SAMCFStackName
                 ChangeSetName: Lambdaupdate
                 TemplatePath: 'BuildArtifactAsZip::packaged.yaml'
                 Capabilities: CAPABILITY_IAM
@@ -116,7 +120,7 @@ Resources:
               Configuration:
                 ActionMode: CHANGE_SET_EXECUTE
                 RoleArn: !GetAtt CloudFormationExecutionRole.Arn
-                StackName: aws-sam-stack
+                StackName: !Ref SAMCFStackName
                 ChangeSetName: Lambdaupdate
               RunOrder: 1
   CodeBuildServiceRole:
@@ -236,8 +240,4 @@ Resources:
                   - 'cloudformation:SetStackPolicy'
                   - 'cloudformation:SetStackPolicy'
                   - 'cloudformation:ValidateTemplate'
-                Resource:
-                  - !Sub >-
-                    arn:aws:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/sam-Codepipeline*/*
-                  - !Sub >-
-                    arn:aws:cloudformation:${AWS::Region}:aws:transform/Serverless-2016-10-31
+                Resource: "*"
