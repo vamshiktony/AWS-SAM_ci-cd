@@ -1,6 +1,6 @@
 # AWS-SAM_ci-cd
 
-First please change the parameters values in "parameters.json" file.
+>>>>First please change the parameters values in "parameters.json" file.
 
 
 #Create AWS cloudformation template using below aws cli command:
